@@ -1,0 +1,9 @@
+<div class="card">
+    @if (formGroupErr.get(formControlErr)?.errors && formGroupErr.get(formControlErr)?.touched   ) {
+        @for (message of errorText; track $index) {
+            @if (formGroupErr.get(formControlErr)?.getError(message.error)) {
+                <div class="rounded-lg text-red-700 font-bold"><i class="fa-solid fa-circle-exclamation"></i> {{message.text}}</div>
+            }
+        }
+    }
+</div>

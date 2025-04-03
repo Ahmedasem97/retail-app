@@ -1,0 +1,9 @@
+/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+:root {
+    --primary-color: #00264D;
+    --secondary-color: #385072;
+    --section-color: #C6BBCB;
+    --linear-gradient-color: linear-gradient(360deg, rgba(28,1,119,1) 0%, rgba(133,119,79,1) 100%);;
+}

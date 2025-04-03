@@ -1,0 +1,41 @@
+<section class=" flex justify-center items-center h-screen ">
+    <div class="bg-[var(--section-color)] p-8 rounded-lg shadow-lg w-96 text-center relative">
+        <div
+            class="absolute -top-12 left-1/2 transform -translate-x-1/2 w-24 h-24 bg-[var(--primary-color)] rounded-full flex justify-center items-center shadow-md">
+            <i class="fas fa-user text-5xl text-white"></i>
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit($event)" class="space-y-4 mt-12 mb-6">
+            <div class="text-left">
+                <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                <input #userInput formControlName="username" type="text" name="username" id="username"
+                    class="mt-1 p-3 w-full rounded-lg  bg-[var(--secondary-color)] text-white">
+
+                <app-error-message
+                    [errorText]="[{text:'UserName is required', error:'required'}, {text:'Enter a letter and number only', error:'pattern'}, {text:'min length is 4', error:'minlength'}, {text:'max length is 20', error:'maxlength'}]"
+                    [formGroupErr]="loginForm" [formControlErr]="'username'">
+                </app-error-message>
+
+            </div>
+            <div class="text-left">
+                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                <input #passInput formControlName="password" type="password" name="password" id="password"
+                    class="mt-1 p-3 w-full rounded-lg  bg-[var(--secondary-color)] text-white">
+
+                <app-error-message
+                    [errorText]="[{text:'Password is required', error:'required'}, {text:'Enter a letter and number only', error:'pattern'}, {text:'min length is 4', error:'minlength'}, {text:'max length is 20', error:'maxlength'}]"
+                    [formGroupErr]="loginForm" [formControlErr]="'password'">
+                </app-error-message>
+
+            </div>
+            <button (click)="onSubmit($event)"
+                class="w-full cursor-pointer bg-[var(--primary-color)] text-white p-3 rounded-lg">Login</button>
+            <button (click)="admin(userInput, passInput)"
+                class="cursor-pointer bg-[var(--primary-color)] text-white p-2 rounded-lg">Fill Admin</button>
+        </form>
+        @if (errorMessage) {
+            <div class="message rounded-lg text-red-700 font-bold">
+                <span>Username or password is not correct</span>
+            </div>
+        }
+    </div>
+</section>

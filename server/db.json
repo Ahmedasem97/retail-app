@@ -1,0 +1,169 @@
+{
+  "tHead": [
+    {
+      "category": "Product ID",
+      "id": "574a"
+    },
+    {
+      "category": "Name",
+      "id": "312d"
+    },
+    {
+      "category": "Category",
+      "id": "d9bb"
+    },
+    {
+      "category": "Price",
+      "id": "a093"
+    },
+    {
+      "category": "Stock",
+      "id": "42a1"
+    },
+    {
+      "category": "Photo",
+      "id": "8630"
+    },
+    {
+      "category": "Action",
+      "id": "e92a"
+    }
+  ],
+  "tBody": [
+    {
+      "Product_ID": 1,
+      "Name": "iphone 16 pro max",
+      "Category": "phone",
+      "Price": 60000,
+      "Stock": "1",
+      "Image": "https://osamasalama.com/wp-content/uploads/2024/09/iphone-16-promax-512-2.png",
+      "id": "f8a9"
+    },
+    {
+      "Product_ID": 2,
+      "Name": "Poco 4F",
+      "Category": "mobile",
+      "Price": "14500",
+      "Stock": "12",
+      "Image": "https://m.media-amazon.com/images/I/61TsOWDYDlL._AC_SL1200_.jpg",
+      "id": "e3a2"
+    },
+    {
+      "Product_ID": 3,
+      "Name": "samsung Tv",
+      "Category": "Tv",
+      "Price": "17000",
+      "Stock": "5",
+      "Image": "https://m.media-amazon.com/images/I/61pWfDIRxmL.jpg",
+      "id": "e3h4"
+    },
+    {
+      "Product_ID": 4,
+      "Name": "Samsung s24 ultra",
+      "Category": "Laptop",
+      "Price": "55000",
+      "Stock": "15",
+      "Image": "https://images.samsung.com/is/image/samsung/assets/sa/smartphones/galaxy-s24-ultra/buy/S24Ultra-Color-Titanium_Grey_MO.jpg?imbypass=true",
+      "id": "5b60"
+    },
+    {
+      "Product_ID": 5,
+      "Name": "Apple MacBook Pro 17",
+      "Category": "Laptop",
+      "Price": 2999,
+      "Stock": 9,
+      "Image": "111999_SP747_mbp13-gray.jpg",
+      "id": "fbaf"
+    },
+    {
+      "Product_ID": 6,
+      "Name": "Mercedes Benz",
+      "Category": "car",
+      "Price": "4250000",
+      "Stock": "1",
+      "Image": "https://bluesky-cogcms-prodb.cdn.imgeng.in/media/23kcymvw/mercedes-amg-gt-c192-stage-3840x3840-07-2023.jpg?width=1200&scale=both",
+      "id": "9d37"
+    },
+    {
+      "Product_ID": 7,
+      "Name": "skoda octavia",
+      "Category": "car",
+      "Price": "450000",
+      "Stock": "1",
+      "Image": "https://img.autoabc.lv/Skoda-Octavia/Skoda-Octavia_2000_Hecbeks_234550528.jpg",
+      "id": "2b32"
+    },
+    {
+      "Product_ID": 8,
+      "Name": "Apple MacBook Pro 17",
+      "Category": "Laptop",
+      "Price": 2999,
+      "Stock": "70",
+      "Image": "111999_SP747_mbp13-gray.jpg",
+      "id": "3c61"
+    },
+    {
+      "Product_ID": 9,
+      "Name": "Apple MacBook Pro 17",
+      "Category": "Laptop",
+      "Price": 2999,
+      "Stock": "22",
+      "Image": "111999_SP747_mbp13-gray.jpg",
+      "id": "f2c1"
+    },
+    {
+      "Product_ID": 10,
+      "Name": "Apple MacBook Pro 17",
+      "Category": "Laptop",
+      "Price": 2999,
+      "Stock": "6",
+      "Image": "111999_SP747_mbp13-gray.jpg",
+      "id": "01e7"
+    },
+    {
+      "Product_ID": 11,
+      "Name": "Apple MacBook Pro 17",
+      "Category": "Laptop",
+      "Price": 2999,
+      "Stock": "4",
+      "Image": "111999_SP747_mbp13-gray.jpg",
+      "id": "2fa1"
+    },
+    {
+      "Product_ID": 12,
+      "Name": "Apple MacBook Pro 17",
+      "Category": "Laptop",
+      "Price": 2999,
+      "Stock": "2",
+      "Image": "111999_SP747_mbp13-gray.jpg",
+      "id": "fda8"
+    },
+    {
+      "Product_ID": 13,
+      "Name": "Apple MacBook Pro 17",
+      "Category": "Laptop",
+      "Price": 2999,
+      "Stock": "3",
+      "Image": "111999_SP747_mbp13-gray.jpg",
+      "id": "1aac"
+    },
+    {
+      "Product_ID": 14,
+      "Name": "Apple MacBook Pro 17",
+      "Category": "Laptop",
+      "Price": 2999,
+      "Stock": "1",
+      "Image": "111999_SP747_mbp13-gray.jpg",
+      "id": "3bb7"
+    },
+    {
+      "Product_ID": 15,
+      "Name": "Apple MacBook Pro 17",
+      "Category": "Laptop",
+      "Price": 2999,
+      "Stock": "9",
+      "Image": "111999_SP747_mbp13-gray.jpg",
+      "id": "5ca7"
+    }
+  ]
+}
