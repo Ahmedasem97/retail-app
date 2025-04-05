@@ -68,11 +68,11 @@
     },
     {
       "Product_ID": 5,
-      "Name": "Apple MacBook Pro 17",
-      "Category": "Laptop",
-      "Price": 2999,
+      "Name": "fc25 ultimate edition",
+      "Category": "games",
+      "Price": 2750,
       "Stock": 9,
-      "Image": "111999_SP747_mbp13-gray.jpg",
+      "Image": "https://i.ytimg.com/vi/GcGJ4fe0iNk/maxresdefault.jpg",
       "id": "fbaf"
     },
     {
@@ -80,7 +80,7 @@
       "Name": "Mercedes Benz",
       "Category": "car",
       "Price": "4250000",
-      "Stock": "1",
+      "Stock": 3,
       "Image": "https://bluesky-cogcms-prodb.cdn.imgeng.in/media/23kcymvw/mercedes-amg-gt-c192-stage-3840x3840-07-2023.jpg?width=1200&scale=both",
       "id": "9d37"
     },

@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   startIndex!: number
   endIndex!: number
   // variable for destroy api
-  $destroy = new Subject();
+  destroy$ = new Subject<void>();
 
   private readonly _productsService = inject(ProductsService)
   private readonly _authService = inject(AuthService)
@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getTableHeader(): void {
     this._productsService.getTableHeader()
-      .pipe(takeUntil(this.$destroy))
+      .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (res) => {
           this.tableHead.set(res.category)
@@ -61,7 +61,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getProduct(): void {
     this._productsService.getTableBody()
-      .pipe(takeUntil(this.$destroy))
+      .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (res) => {
           this.tableBody.set(res.product)
@@ -123,7 +123,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   deleteProduct(id: number): void {
     this._productsService.deletProduct(id)
-      .pipe(takeUntil(this.$destroy))
+      .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: res => {
           this.getProduct()
@@ -135,25 +135,26 @@ export class HomeComponent implements OnInit, OnDestroy {
       })
   }
 
-  signOut() {
+  signOut(): void {
     this._authService.setLogedValue("")
     localStorage.removeItem("retailToken")
     this._router.navigate(["/auth/login"])    
   }
 
-  updateDisplayedProducts() {
+  updateDisplayedProducts():void {
     this.startIndex = this.currentPage * this.itemsPerPage;
     this.endIndex = this.startIndex + this.itemsPerPage;
   }
 
-  onPageChange(newPage: number) {
+  onPageChange(newPage: number):void {
     this.currentPage = newPage;
     this.updateDisplayedProducts();
   }
 
 
   ngOnDestroy(): void {
-    this.$destroy.next('destroy');
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
 }

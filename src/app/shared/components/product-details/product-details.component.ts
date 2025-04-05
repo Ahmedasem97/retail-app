@@ -17,7 +17,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   // Variabls
   product: WritableSignal<ProductTBody> = signal({} as ProductTBody)
   updateForm!: FormGroup
-  $destroy = new Subject();
+  destroy$ = new Subject<void>();
 
   // Injects
   private readonly _formBuilder = inject(FormBuilder)
@@ -36,7 +36,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
 
     // get the productById to catch the product to update
     this._productsService.getProductById(productId)
-      .pipe(takeUntil(this.$destroy))
+      .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: res => {
           this.product.set(res)
@@ -73,7 +73,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
 
   updateProduct(): void {
     this._productsService.updateProduct(this.updateForm.value)
-    .pipe(takeUntil(this.$destroy))
+    .pipe(takeUntil(this.destroy$))
     .subscribe({
       next: res => {
         this._router.navigate(["/main/home"])
@@ -85,6 +85,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.$destroy.next('destroy');
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
