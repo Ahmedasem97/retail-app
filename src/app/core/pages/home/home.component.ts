@@ -7,10 +7,12 @@ import { PaginationComponent } from "../../../shared/components/pagination/pagin
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { Sort, SortProperty } from '../../interfaces/sort.interface';
+import { SqliteService } from '../../../SQL/services/sqlite.service';
+import { SqlPlaygroundComponent } from "../sql-playground.component";
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, PaginationComponent, CommonModule],
+  imports: [RouterLink, PaginationComponent, CommonModule, SqlPlaygroundComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -32,12 +34,25 @@ export class HomeComponent implements OnInit, OnDestroy {
   endIndex!: number
   // variable for destroy api
   destroy$ = new Subject<void>();
+  private db = inject(SqliteService);
 
   private readonly _productsService = inject(ProductsService)
   private readonly _authService = inject(AuthService)
   private readonly _router = inject(Router)
 
-  ngOnInit(): void {
+  async ngOnInit() {
+        await this.db.init();
+
+    // مثال: إنشاء جدول مرة واحدة لو مش موجود
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS products (
+        id INTEGER PRIMARY KEY,
+        name TEXT NOT NULL,
+        price REAL NOT NULL,
+        created_at TEXT DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
     this.getTableHeader()
     this.getProduct()
     this.updateDisplayedProducts();
@@ -50,7 +65,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (res) => {
           this.tableHead.set(res.category)
-
+          console.log(res);
         },
         error: err => {
           console.log(err);
@@ -65,6 +80,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (res) => {
           this.tableBody.set(res.product)
+          console.log(res);
         },
         error: err => {
           console.log(err);
