@@ -8,13 +8,23 @@ import initSqlJs, {
 import { get, set } from 'idb-keyval';
 
 type Row = Record<string, unknown>;
+export type InventoryRow = {
+  description1: string;
+  description2?: string | null;
+  priceWithTax: number;
+  attr?: string | null;
+  size?: string | null;
+  alu?: string | null;
+  upc?: string | null;
+};
+
 
 @Injectable({ providedIn: 'root' })
 export class SqliteService {
   private SQL!: SqlJsStatic;
   private db!: Database;
   private isReady = false;
-  private readonly DB_KEY = 'app.sqlite';
+  private readonly DB_KEY = 'accounting_db';
 
   /** نادِها مرة واحدة (مثلاً في app.component) */
   async init(): Promise<void> {
@@ -123,5 +133,62 @@ export class SqliteService {
 
     deleteProduct(id: number): void {
     this.exec('DELETE FROM products WHERE id = ?', [id]);
+    }
+
+
+    // نوع العنصر القادم من الـ API بعد الماب
+
+    bulkUpsertInventory(rows: InventoryRow[]): void {
+      this.ensureReady();
+    
+      const sql = `
+        INSERT INTO inventory
+          (description1, description2, priceWithTax, attr, size, alu, upc)
+        VALUES
+          (?, ?, ?, ?, ?, ?, ?)
+        ON CONFLICT(upc) DO UPDATE SET
+          description1 = excluded.description1,
+          description2 = excluded.description2,
+          priceWithTax = excluded.priceWithTax,
+          attr        = excluded.attr,
+          size        = excluded.size,
+          upc         = excluded.upc
+      `;
+    
+      this.exec('BEGIN');
+      try {
+        const stmt = this.db.prepare(sql); // Statement من sql.js
+        try {
+          for (const r of rows) {
+            const price = Number(r.priceWithTax);
+            const params: BindParams = [
+              r.description1 ?? '',
+              r.description2 ?? null,
+              Number.isFinite(price) ? price : 0,
+              r.attr ?? null,
+              r.size ?? null,
+              r.alu ?? null,
+              r.upc ?? null,
+            ];
+            stmt.bind(params); // ✅ اربط القيم
+            stmt.step();       // ✅ نفّذ
+            stmt.reset();      // ✅ جهّز للإعادة بمدخلات جديدة
+            // لا تستدعِ clearBindings() — غير موجود في sql.js
+          }
+        } finally {
+          stmt.free(); // ✅ حرّر الـ statement
+        }
+        this.exec('COMMIT');
+      } catch (e) {
+        this.exec('ROLLBACK');
+        throw e;
+      }
+    }
+
+
+    countInventory(): number {
+      this.ensureReady();
+      const rows = this.select<{ c: number }>('SELECT COUNT(*) AS c FROM inventory');
+      return rows[0]?.c ?? 0;
     }
 }

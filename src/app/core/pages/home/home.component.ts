@@ -12,7 +12,7 @@ import { SqlPlaygroundComponent } from "../sql-playground.component";
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, PaginationComponent, CommonModule, SqlPlaygroundComponent],
+  imports: [ CommonModule, SqlPlaygroundComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -53,9 +53,9 @@ export class HomeComponent implements OnInit, OnDestroy {
       )
     `);
 
-    this.getTableHeader()
-    this.getProduct()
-    this.updateDisplayedProducts();
+    // this.getTableHeader()
+    // this.getProduct()
+    // this.updateDisplayedProducts();
 
   }
 
